@@ -11,7 +11,7 @@ const userRouter = require('./routes/user/userRoutes')
  
 const app = express()
 
-const PORT = 3000;
+const PORT = 4000;
 
 
 /*
@@ -23,7 +23,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
             
-
 
 app.use(userRouter);
 

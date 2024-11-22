@@ -7,5 +7,10 @@ const router = express.Router()
 
 router.get("/", serveHomePage)
 
-module.exports = router
 
+router.get("/login", serveLoginPage)
+
+
+router.get("/signup", serveSignUpPage)
+
+module.exports = router
