@@ -101,7 +101,7 @@
   align-content: center;
   flex-direction: column;
 }
-#err-username ,#err-email ,#err-password{
+#err-username ,#err-email ,#err-password,#error{
   width: 60%;
   margin: auto;
   font-size: 14px;
