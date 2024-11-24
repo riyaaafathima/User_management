@@ -30,48 +30,43 @@ function serveSignUpPage(req, res) {
 
 }
 
-function serveDashBoard(req,res) {
-    try {
-        res.render('user/dashboard')
-    } catch (error) {
-        throw new Error('something went wrong',error)
-    }
-    
-}
+
 async function loginController(req, res) {
     try {
         const { email, password } = req.body;
         const isEmailExist = await userModel.findOne({ email })
-        
-        
-        
+
+
+
         if (!isEmailExist) {
             // throw new Error('email already exist');
-            return res.status(400).json({error: 'email doenot exist', type: "email"})
+            return res.status(400).json({ error: 'email doenot exist', type: "email" })
         }
 
-        const isMatch= await bcrypt.compare(password,isEmailExist.password)
-        
-        if(!isMatch){
+        const isMatch = await bcrypt.compare(password, isEmailExist.password)
+
+        if (!isMatch) {
             // throw new Error("password incorrect 😒");
-            
-            return res.status(400).json({ error: 'Password is incorrect 😒', type:'password'});
-  
+
+            return res.status(400).json({ error: 'Password is incorrect 😒', type: 'password' });
+
         }
-        if(isEmailExist.isAdmin){
-            return res.status(200).json( {message:'login successfull 🎉',isAdmin:true})
+        if (isEmailExist.isAdmin) {
+            return res.status(200).json({ message: 'login successfull 🎉', isAdmin: true })
         }
- 
-       
-        return res.status(200).json( {message:'login successfull 🎉'})
+        req.session.user = {
+            email: email
+        }
+
+        return res.status(200).json({ message: 'login successfull 🎉' })
     } catch (error) {
-        return res.status(400).json({error:'internal server error', type:'error'})
-
-       
-    }
+        return res.status(400).json({ error: 'internal server error', type: 'error' })
 
 
     }
+
+
+}
 
 async function signupController(req, res) {
     try {
@@ -81,17 +76,18 @@ async function signupController(req, res) {
             throw new Error("email already exist");
         }
 
-        if (password.length < 8) {
-            throw new Error('include 8 characters please');
-        }
+
         const newUser = new UserModel({
-            // attaching blueprint from schema as key and userdata as pairs that from req .body
+            // attaching blueprint from schema as key and userdata as pairs that from req .body;
             username,
             email,
             password: await bcrypt.hash(password, 10)
         })
 
         await newUser.save()
+        req.session.user = {
+            email: email
+        }
 
         return res.status(200).json('successfully saved')
     } catch (error) {
@@ -113,6 +109,5 @@ module.exports = {
     serveSignUpPage,
     signupController,
     loginController,
-    serveDashBoard
 }
 

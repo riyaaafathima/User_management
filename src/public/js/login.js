@@ -17,6 +17,8 @@ const err_email_el = document.getElementById('err-email')
 button_el.addEventListener('click', async function (e) {
     e.preventDefault();
 
+   
+
     const isEmailExist = {
         [email_el.id]: email_el.value,
         [error.id]: password_el.value,
@@ -32,7 +34,7 @@ button_el.addEventListener('click', async function (e) {
         err_email_el.innerHTML = 'please enter your email !!'
 
     }
-
+     
 
     const response = await fetch('/login', {
         method: 'POST',
@@ -46,6 +48,7 @@ button_el.addEventListener('click', async function (e) {
         })
 
     })
+
 
     if (response.ok) {
         const result = await response.json();

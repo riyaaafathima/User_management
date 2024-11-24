@@ -2,6 +2,9 @@
 requiring express from module : npm
 */
 const express = require('express')
+
+const session=require('express-session')
+
 /* 
 requiring path its a core module
 */
@@ -15,6 +18,8 @@ const dbConnection= require('./config/dbConnection')
 
 const app = express()
 
+
+
 const PORT = 4000;
 
 
@@ -25,6 +30,7 @@ serving css and images by setting public folder as static
 */
 app.use(express.static(path.join(__dirname, 'public')));
 
+
 app.set('views', path.join(__dirname, 'views'));
 
 app.set('view engine', 'ejs');
@@ -33,6 +39,17 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(express.json())
 
+app.use(session({
+    secret:'abcd',
+    resave:false,
+    saveUninitialized:false,
+    cookie: {
+    maxAge: 1200000,
+    sameSite: true
+    },
+    
+}))
+ 
 /* 
 database called here
 */

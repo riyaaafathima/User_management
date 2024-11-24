@@ -1,19 +1,21 @@
 const express = require("express");
 
-const { serveHomePage, serveLoginPage, serveSignUpPage, signupController, loginController, serveDashBoard } = require("../../controller/user/userController")
+const { serveHomePage, serveLoginPage, serveSignUpPage, signupController, loginController } = require("../../controller/user/userController");
+const requireUser = require("../../middleware/requireUser");
+const preventNavigation = require("../../middleware/preventNavigation");
 
 const router = express.Router()
 
 
-router.get("/", serveHomePage)
+router.get("/",requireUser ,serveHomePage)
 
 
-router.get("/login", serveLoginPage)
 
 
-router.get("/signup", serveSignUpPage)
+router.get("/login",preventNavigation, serveLoginPage)
 
-router.get('/dashboard',serveDashBoard)
+
+router.get("/signup",preventNavigation, serveSignUpPage)
 
 router.post('/signup',signupController)
 
