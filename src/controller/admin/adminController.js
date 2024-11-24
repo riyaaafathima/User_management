@@ -1,9 +1,33 @@
+const { name } = require("ejs")
 const userModel = require("../../model/userModel")
 
 async function getAllUsersController(req, res) {
     try {
-        const getAllUsers = await userModel.find({})
-        return res.status(200).json(getAllUsers)
+        const{name}=req.query
+        console.log('this i squer', req.query);
+
+
+        if (name) {
+
+
+            const queryUser = await userModel.find({
+              
+                username: { $regex: name, $options: 'i' }  // i refered aas not bothering sensitivity letters
+
+            })
+
+
+            console.log(queryUser);
+            res.render('admin/dashboard', {
+                allUsers: queryUser
+
+
+
+
+            })
+            console.log('this is if');
+
+        }
 
     } catch (error) {
         throw new Error('something went wrong', error)
@@ -12,12 +36,22 @@ async function getAllUsersController(req, res) {
 }
 async function serveDashBoard(req, res) {
     try {
+
         const allUsers = await userModel.find({
             isAdmin: false
+
         })
+
+
         res.render('admin/dashboard', {
             allUsers
+
         })
+
+
+
+
+
     } catch (error) {
         throw new Error('something went wrong', error)
     }
@@ -39,10 +73,10 @@ async function dashboardController(req, res) {
     try {
         const user_id = req.params.id
         const userdata = await userModel.findById(user_id);
-        if(!userdata){
+        if (!userdata) {
             throw new Error("no user found ");
         }
-       return res.render('admin/userdata',{
+        return res.render('admin/userdata', {
             userdata
         })
     } catch (error) {
@@ -50,23 +84,25 @@ async function dashboardController(req, res) {
         return res.status(400).json(error.message)
 
     }
- 
+
 
 }
-async function userUpdateController(req,res){
+async function userUpdateController(req, res) {
     try {
-        const {username,email,_id}=req.body
-        const updateUser = await userModel.findByIdAndUpdate(_id,{$set:{
-            email,
-            username
-        }},{new:true})  //new true used to update the doc otherwise it ll show old doc 
+        const { username, email, _id } = req.body
+        const updateUser = await userModel.findByIdAndUpdate(_id, {
+            $set: {
+                email,
+                username
+            }
+        }, { new: true })  //new true used to update the doc otherwise it ll show old doc 
 
-       return res.redirect('/dashboard')
-        
+        return res.redirect('/dashboard')
+
     } catch (error) {
-    
-    return res.status(400).json(error.message)
-        
+
+        return res.status(400).json(error.message)
+
     }
 }
 

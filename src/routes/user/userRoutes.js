@@ -1,6 +1,6 @@
 const express = require("express");
 
-const { serveHomePage, serveLoginPage, serveSignUpPage, signupController, loginController } = require("../../controller/user/userController");
+const { serveHomePage, serveLoginPage, serveSignUpPage, signupController, loginController, logoutController } = require("../../controller/user/userController");
 const requireUser = require("../../middleware/requireUser");
 const preventNavigation = require("../../middleware/preventNavigation");
 
@@ -20,5 +20,7 @@ router.get("/signup",preventNavigation, serveSignUpPage)
 router.post('/signup',signupController)
 
 router.post('/login',loginController) 
+
+router.get('/logout',logoutController)
 
 module.exports = router

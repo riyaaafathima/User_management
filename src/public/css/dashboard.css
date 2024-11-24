@@ -238,6 +238,7 @@ tr:hover {
     outline: none;
     border-color: var(--teal-500);
     box-shadow: 0 0 0 3px rgba(20, 184, 166, 0.1);
+    color:black;
 }
 
 @media (max-width: 768px) {

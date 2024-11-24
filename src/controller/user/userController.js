@@ -5,8 +5,10 @@ const bcrypt = require('bcrypt');
 
 function serveHomePage(req, res) {
     try {
-        res.render('user/home')
-
+        res.render('user/home',{
+            user: req.session.user
+        })
+    
     } catch (error) {
         throw new Error('something went wrong', error)
     }
@@ -52,7 +54,11 @@ async function loginController(req, res) {
 
         }
         if (isEmailExist.isAdmin) {
+            req.session.isAdmin = {
+                email: email
+            }
             return res.status(200).json({ message: 'login successfull 🎉', isAdmin: true })
+
         }
         req.session.user = {
             email: email
@@ -93,7 +99,21 @@ async function signupController(req, res) {
     } catch (error) {
         return res.status(400).json(error.message);
     }
+
 }
+function logoutController(req, res) {
+    try {
+        req.session.destroy((err) => {
+            if (err) {
+                return res.status(500).json({ error: 'Failed to destroy session' });
+            }
+            res.redirect('/signup'); // Redirect after session is destroyed
+        });
+    } catch (error) {
+        return res.status(400).json({ error: error.message });
+    }
+}
+
 
 
 
@@ -109,5 +129,6 @@ module.exports = {
     serveSignUpPage,
     signupController,
     loginController,
+    logoutController
 }
 

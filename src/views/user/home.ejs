@@ -25,7 +25,15 @@
         </div>
 
         <div class="right">
-            <button class="signupbtn">signup</button>
+            <a href="/login">
+            
+
+            <% if(user){%>
+                <button class="signupbtn" id="logout-btn">logout</button>
+           <% } else{%>
+            <button class="signupbtn" >signup</button>
+           <%}%>
+            </a>
         </div>
     </nav>
 
@@ -73,5 +81,6 @@
         
     </style>
 </body>
+<script src="js/home.js"></script>
 
 </html>

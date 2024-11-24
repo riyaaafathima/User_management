@@ -22,7 +22,7 @@
                 <a href="#" class="nav-link">Home</a>
                 <a href="#" class="nav-link">Users</a>
                 <a href="#" class="nav-link">Reports</a>
-                <a href="#" class="nav-link">Settings</a>
+                <a href="#" class="nav-link " id="logout-btn">logout</a>
                 <div class="user-profile">
                     <div class="user-avatar">
                         <i class="fas fa-user"></i>
@@ -40,15 +40,20 @@
                 <h1 class="dashboard-title">User Management</h1>
                 <p class="dashboard-subtitle">Manage and monitor user accounts</p>
             </div>
-            <button class="add-user-btn">
-                <i class="fas fa-plus"></i>
-                Add New User
-            </button>
+            
+           
         </div>
 
         <div class="card">
             <div class="search-bar">
-                <input type="text" class="search-input" placeholder="Search users...">
+                <form action="getAllUsers", method="get">
+                    <input type="text" id="search-bar"  name="name" class="search-input" placeholder="Search users...">
+                    <button class="add-user-btn" id="search-btn">
+                        <i class="fas fa-plus" ></i>
+                        search-User
+                    </button>
+                </form>
+                
             </div>
             <div class="table-container">
                 <table>
