@@ -1,10 +1,12 @@
 const preventNavigation=(req,res,next)=>{
-    if(req.session.user){
+    if(req.session.user ){
         res.redirect('/')
       
-    }else{
-       next()
+    }else if(req.session.isAdmin){
+      res.redirect('/dashboard')
        
+    }else{
+        next()
     }
 
 }

@@ -125,6 +125,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     transition: background-color 0.2s;
+    margin-top: 10px;
 }
 
 .add-user-btn:hover {
@@ -204,6 +205,7 @@ tr:hover {
 .btn-view {
     background: var(--teal-600);
     color: white;
+   
 }
 
 .btn-view:hover {
@@ -223,6 +225,8 @@ tr:hover {
     display: flex;
     gap: 1rem;
     margin-bottom: 1rem;
+    width: 100%;
+   
 }
 
 .search-input {
@@ -232,6 +236,7 @@ tr:hover {
     border-radius: 0.375rem;
     font-size: 0.875rem;
     background-color: white;
+    width:70vw;
 }
 
 .search-input:focus {

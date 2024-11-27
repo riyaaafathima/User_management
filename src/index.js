@@ -24,7 +24,8 @@ const PORT = 4000;
 
 
 
-/*
+
+/* 
 serving css and images by setting public folder as static 
  images are in public so no need to configure the path of img with weird slashes
 */
@@ -54,7 +55,16 @@ app.use(session({
 database called here
 */
 
-dbConnection()
+dbConnection(); 
+
+
+// preventing the navigation of chrome adding this in middleware
+app.use((req, res, next) => {
+    res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    next();
+  });
 
 
 app.use(userRouter);
