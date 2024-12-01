@@ -9,4 +9,4 @@ const requireUser=(req,res,next)=>{
 
 
 }
-module.exports=requireUser
+module.exports=requireUser    

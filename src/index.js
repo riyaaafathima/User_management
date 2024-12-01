@@ -38,7 +38,7 @@ app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json())
+app.use(express.json());
 
 app.use(session({
     secret:'abcd', 
@@ -66,14 +66,16 @@ app.use((req, res, next) => {
     next();
   });
 
-
+        
 app.use(userRouter);
 app.use(adminRouter);
-
+    
 
 app.listen(PORT, () => {
     console.log(`server is starting in port ${PORT}`);
 })
+
+
 
 
 
