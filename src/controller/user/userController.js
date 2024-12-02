@@ -95,7 +95,7 @@ async function signupController(req, res) {
             email: email 
         }
 
-        return res.status(200).json('successfully saved')
+        return res.status(200).json('successfully saved');
     } catch (error) {
         return res.status(400).json(error.message);
     }

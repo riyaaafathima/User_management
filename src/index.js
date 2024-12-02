@@ -38,19 +38,21 @@ app.set('view engine', 'ejs');
 
 app.use(express.urlencoded({ extended: true }));
 
-app.use(express.json());
+app.use(express.json());    
 
 app.use(session({
     secret:'abcd', 
     resave:false,
     saveUninitialized:false,
     cookie: {
-    maxAge: 1200000,  // millsec duration
+    maxAge: 1200000,  
     sameSite: true
     },
     
 }))
- 
+
+
+
 /* 
 database has called here
 */
