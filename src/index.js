@@ -45,14 +45,14 @@ app.use(session({
     resave:false,
     saveUninitialized:false,
     cookie: {
-    maxAge: 1200000,
+    maxAge: 1200000,  // millsec duration
     sameSite: true
     },
     
 }))
  
 /* 
-database called here
+database has called here
 */
 
 dbConnection(); 
@@ -69,6 +69,8 @@ app.use((req, res, next) => {
         
 app.use(userRouter);
 app.use(adminRouter);
+
+
     
 
 app.listen(PORT, () => {

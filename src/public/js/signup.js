@@ -19,9 +19,12 @@ const err_password_el = document.getElementById('err-password');
 button_el.addEventListener("click", async function (e) {
     e.preventDefault();
 
+
     const user_credential = {
-        [email_el.id]: email_el.value,
+        [email_el.id]: email_el.value, 
+
         [username_el.id]: username_el.value,
+        
         [password_el.id]: password_el.value
     };
 
@@ -44,7 +47,7 @@ button_el.addEventListener("click", async function (e) {
 
     }
 
-    const respose = await fetch('/signup', {
+    const response = await fetch('/signup', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -54,15 +57,20 @@ button_el.addEventListener("click", async function (e) {
     })
 
 
-    if (respose.ok) {
+    if (response.ok) {
         window.location.href = '/'
     } else {
-        const result = await respose.json();
+        const result = await response.json();
         console.log(result);
         // show the result txt in front end
 
     }
 
+
+
+    
+
+        
 
 
 })

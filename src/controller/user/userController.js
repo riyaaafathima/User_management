@@ -92,7 +92,7 @@ async function signupController(req, res) {
 
         await newUser.save()
         req.session.user = {
-            email: email
+            email: email 
         }
 
         return res.status(200).json('successfully saved')

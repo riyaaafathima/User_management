@@ -3,7 +3,7 @@ const mongoose= require('mongoose')
 
 async function dbConnection() {
     try {
-        mongoose.connect('mongodb://localhost:27017/userManagement').then(()=>{
+        mongoose.connect('mongodb://localhost:27017/userManagement').then(()=>{   // mongoose is database driver 
             console.log('databse connected 👽');
             
         })
