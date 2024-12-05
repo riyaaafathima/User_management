@@ -23,4 +23,4 @@ router.post('/login',loginController)
 
 router.get('/logout',logoutController)
 
-module.exports = router
+module.exports = router   
