@@ -20,6 +20,8 @@ const app = express();
 
 const PORT = 4000;
 
+     
+
 /* 
 serving css and images by setting public folder as static 
  images are in public so no need to configure the path of img with weird slashes
@@ -65,12 +67,4 @@ app.use(adminRouter);
 
 app.listen(PORT, () => {
   console.log(`server is starting in port ${PORT}`);
-
 });
-  
-
-
-
-
-
-  
