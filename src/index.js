@@ -20,7 +20,7 @@ const app = express();
 
 const PORT = 4000;
 
-     
+      
 
 /* 
 serving css and images by setting public folder as static 
