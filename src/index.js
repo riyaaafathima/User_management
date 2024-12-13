@@ -20,6 +20,7 @@ const app = express();
 
 const PORT = 4000;
 
+
       
 
 /* 
@@ -52,7 +53,10 @@ app.use(
 database has called here
 */
 
+
 dbConnection();
+
+
 
 // preventing the navigation of chrome adding this in middleware
 app.use((req, res, next) => {
@@ -61,6 +65,8 @@ app.use((req, res, next) => {
   res.setHeader("Expires", "0");
   next();
 });
+
+
 
 app.use(userRouter);
 app.use(adminRouter);
